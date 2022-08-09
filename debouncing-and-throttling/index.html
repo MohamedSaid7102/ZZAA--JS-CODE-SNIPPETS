@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Debouncing and Throttling</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+  </style>
+</head>
+
+<body>
+  <form>
+    <input type="text" id="input" style="font-size: 3rem" autocomplete="off">
+    <fieldset>
+      <span style="font-size: 2rem;">Default: </span>
+      <span id="default" style="font-size: 1.5rem"></span>
+    </fieldset>
+    <fieldset>
+      <span style="font-size: 2rem;">Debounce: </span>
+      <span id="debounce" style="font-size: 1.5rem"></span>
+    </fieldset>
+    <fieldset>
+      <span style="font-size: 2rem;">Throttle: </span>
+      <span id="throttle" style="font-size: 1.5rem"></span>
+    </fieldset>
+  </form>
+  <script src="debounce_and_throttle.js"></script>
+</body>
+
+</html>
