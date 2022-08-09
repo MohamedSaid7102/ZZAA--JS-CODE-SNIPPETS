@@ -15,7 +15,7 @@ const debounce = (cb, delay = 1000) => {
 };
 
 const updateDebounceText = debounce((text) => {
-  debounceText.textContent = text;
+  incrementCount(debounceText);
 }, 500);
 // Throttle
 const throttle = (cb, delay = 1000) => {
@@ -49,12 +49,16 @@ const throttle = (cb, delay = 1000) => {
 };
 
 const updateThrottleText = throttle((text) => {
-  throttleText.textContent = text;
-});
+  incrementCount(throttleText);
+}, 500);
 // Invocation
-input.addEventListener('input', (e) => {
-  // Noraml
-  defaultText.textContent = e.target.value;
-  updateDebounceText(e.target.value);
-  updateThrottleText(e.target.value);
+document.addEventListener('mousemove', () => {
+  incrementCount(defaultText);
+  updateDebounceText();
+  updateThrottleText();
 });
+
+// Utility Functions
+function incrementCount(element) {
+  element.textContent = (parseInt(element.innerText) || 0) + 1;
+}
