@@ -1,27 +1,52 @@
+//////////////////////// Utility Functions Start //////////////////////
+
+/** Detect if user agent is IE or not **/
+function detectIE() {
+  try {
+    let isIE = /*@cc_on!@*/ false || !!document.documentMode;
+
+    if (!isIE)
+      if (navigator.userAgent.indexOf('MSIE') > 0)
+        // Fallback to UserAgent detection for IE
+        return true;
+      else return false;
+
+    return true;
+  } catch (e) {
+    let error = e.toString();
+
+    console.log(error);
+  }
+}
+
+
+/**
+ *
+ * @param {DOM Element} element, on click this element
+ * @param {DOM Element} section , scroll to this section
+ */
+function smoothScrollOn(element, section) {
+  element.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    const sectionCoords = section.getBoundingClientRect();
+
+    // IE fallback
+    if (detectIE())
+      window.scrollTo(
+        sectionCoords.left + window.scrollX,
+        sectionCoords.top + window.scrollY
+      );
+
+    // Very modern browsers
+    section.scrollIntoView({ behavior: 'smooth' });
+  });
+}
+//////////////////////// Utility Functions End //////////////////////
+
 // const btn = getButtonYouWant
 // const targetedSection = getSectionYouWant
-
-const sectionCoords = targetedSection.getBoundingClientRect();
-
-btn.addEventListener('click', (e) => {
-  e.preventDefault();
-
-  // IE fallback
-  window.scrollTo(
-    sectionCoords.left + window.scrollX,
-    sectionCoords.top + window.scrollY
-  );
-
-  // Browsers that support (left, top, behavior) parameters
-  window.scrollTo({
-    left: sectionCoords.left + window.scrollX,
-    top: sectionCoords.top + window.scrollY,
-    behavior: 'smooth',
-  });
-
-  // Very modern browsers
-  targetedSection.scrollIntoView({ behavior: 'smooth' });
-});
+smoothScrollOn(btn, targetedSection);
 
 // ******************************** //
 /* ********** Some facts ********** */
